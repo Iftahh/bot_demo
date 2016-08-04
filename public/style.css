@@ -1,0 +1,93 @@
+/* styles */
+/* called by your view template */
+
+/* btw vendor prefixes are added automatically */
+
+/* You might want to try something fancier: */
+/* less: http://lesscss.org/ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  display: flex;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  display: flex;
+  flex: 1;
+  margin: 0;
+  padding: 10px;
+}
+
+div.main {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 48px;
+  color: pink;
+}
+
+
+
+.messages { 
+  flex: 1;
+  overflow: auto;
+}
+.messages tr { padding: 5px 10px; }
+
+.messages th {
+  background-color: #44c;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+
+.messages td {
+  border: 1px solid #ddd;
+  vertical-align: top
+}
+
+.messages td.type, .messages td.provider {
+    padding: 8px 5px;
+}
+
+.message-json {
+   white-space: pre-wrap; 
+   max-height: 200px;
+   overflow: auto;
+   font-family: monospace;
+}
+
+.message-json .key {
+  font-weight: 900;
+  color: #113; 
+}
+
+.message-json .number {
+  font-weight: 800;
+  color: #ee422e;
+}
+
+.message-json .string {
+  font-weight: 800;
+  color: green;
+}
+
+.message-json .boolean {
+  font-weight: 800;
+  color: #ff8c00;
+}
+
+.message-json .null {
+  font-weight: 800;
+  color: #004ED0;
+  font-style: italic;
+}
