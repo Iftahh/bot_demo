@@ -37,11 +37,11 @@ function syntaxHighlight(json) {
     });
 }
 
-socket.on('botlogger message', function(msg) {
-  var dict = JSON.parse(msg);
+socket.on('webhook message', function(dict) {
+  console.log("webhook message ", dict);
   $('.messages tbody').append($('<tr><td class="type">'+
-    dict._type+"</td><td class='provider'>"+
-    dict.messagingProvider+"</td><td><div class='message-json'>"+
+    dict._type+'</td><td class="url">'+
+    dict.url+"</td><td><div class='message-json'>"+
     syntaxHighlight(JSON.parse(dict.message))+"</div></td></tr>")
   );
   // scroll to bottom

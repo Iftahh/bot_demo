@@ -41,7 +41,6 @@ h1 {
   flex: 1;
   overflow: auto;
 }
-.messages tr { padding: 5px 10px; }
 
 .messages th {
   background-color: #44c;
@@ -52,18 +51,18 @@ h1 {
 
 .messages td {
   border: 1px solid #ddd;
-  vertical-align: top
+  vertical-align: top;
 }
 
-.messages td.type, .messages td.provider {
+.messages td.url, .messages td.type {
     padding: 8px 5px;
 }
 
 .message-json {
-   white-space: pre-wrap; 
-   max-height: 200px;
-   overflow: auto;
-   font-family: monospace;
+  white-space: pre-wrap; 
+  max-height: 200px;
+  overflow: auto;
+  font-family: monospace;
 }
 
 .message-json .key {
