@@ -11,9 +11,36 @@ var io = require('socket.io')(http);
 app.use(bodyParser.json());
 
 var messages = [];
+var messageNum = 0;
 var participants = [];
 
+
+function getFormattedDate() {
+    var date = new Date();
+
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    var sec = date.getSeconds();
+
+    month = (month < 10 ? "0" : "") + month;
+    day = (day < 10 ? "0" : "") + day;
+    hour = (hour < 10 ? "0" : "") + hour;
+    min = (min < 10 ? "0" : "") + min;
+    sec = (sec < 10 ? "0" : "") + sec;
+
+    var str = date.getFullYear() + "-" + month + "-" + day + " \n" +  hour + ":" + min + ":" + sec;
+
+    /*alert(str);*/
+
+    return str;
+}
+
 function sendMessage(msg) {
+  messageNum++;
+  msg.index =  messageNum;
+  msg.timestamp = getFormattedDate();
   messages.push(msg);
   if (messages.length > 250) {
     messages = messages.slice(messages.length-250);  // avoid filling the server memory
@@ -128,6 +155,7 @@ app.post("/flight_itinerary", function (request, response) {
 });
 
 app.post("/reservation_show", function (request, response) {
+  
   sendWebhookInput(request);
   sendResponse(request, response, [{_type:"TextMessage", text:"You have no reservations."}]);
 });
@@ -144,7 +172,8 @@ app.post("/flight_status", function (request, response) {
 
 app.post("/contact_support", function (request, response) {
   sendWebhookInput(request);
-  sendResponse(request, response, []);
+  sendResponse(request, response, [{_type: "HandoffToHumanEvent", noAgentsOnlineHook: {"url": "https://seed-gem.hyperdev.space/reservation_show", payload:{"test":true}}
+  }]);
 });
 
 app.post("/airport_navigation", function (request, response) {

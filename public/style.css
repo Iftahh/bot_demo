@@ -54,8 +54,14 @@ h1 {
   vertical-align: top;
 }
 
-.messages td.url, .messages td.type {
-    padding: 8px 5px;
+.messages td.url, .messages td.type, .messages td.index {
+  padding: 8px 5px;
+}
+
+.messages td.timestamp {
+  padding: 8px 5px;
+  white-space: pre-wrap; 
+  color: #22a;
 }
 
 .message-json {
