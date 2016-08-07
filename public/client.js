@@ -37,12 +37,12 @@ function syntaxHighlight(json) {
     });
 }
 
-socket.on('webhook message', function(dict) {
-  console.log("webhook message ", dict);
-  $('.messages tbody').append($('<tr><td class="type">'+
-    dict._type+'</td><td class="url">'+
-    dict.url+"</td><td><div class='message-json'>"+
-    syntaxHighlight(JSON.parse(dict.message))+"</div></td></tr>")
+socket.on('webhook message', function(msg) {
+  console.log("webhook message ", msg);
+  $('.messages tbody').append($('<tr><td class="index">'+msg.index+'</td><td class="timestamp">'+msg.timestamp+'</td><td class="type">'+
+    msg._type+'</td><td class="url">'+
+    msg.url+"</td><td><div class='message-json'>"+
+    syntaxHighlight(JSON.parse(msg.message))+"</div></td></tr>")
   );
   // scroll to bottom
   window.scrollTo(0,document.body.scrollHeight);
